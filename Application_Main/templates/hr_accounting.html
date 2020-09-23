@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dashboard</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" >
+	<style type="text/css">
+		.card-body{
+			text-align: center;
+		}
+		.card{
+			height: 200px;
+		}
+		#hello{
+			width: 100%;
+		}
+	</style>
+	</head>
+<body>
+ {% include "nav.html" %}
+
+
+<br>
+
+<div class="container">
+<div class="row">
+	<div class="col-sm-5">
+<button class="btn btn-primary" id="hello">Individual Outstandings</button>
+		<table class="table">
+  <thead>
+
+    <tr>
+      <th scope="col">Patient</th>
+      <th scope="col">Outstanding</th>
+      <th scope="col">Paid</th>
+      <th scope="col">Reminder</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+  	  	{% for data in individual %}
+    <tr>
+      <th scope="row">{{ data.patient.name }}</th>
+      <td> {{ data.outstanding }}</td>
+      <td> {{ data.paid }} </td>
+      <td> <a   class="btn btn-danger" href="{% url 'send_reminder' id=data.id %}">Send Reminder</td>
+
+
+    </tr>
+    {% endfor %}
+   
+  </tbody>
+</table>
+	</div>
+
+
+  <!-- Last patients -->
+  <div class="col-sm-7">
+    <button class="btn btn-primary" id="hello">Consultation's Outstanding</button>
+    <table class="table">
+  <thead>
+
+    <tr>
+      <th scope="col">Date</th>
+      <th scope="col">Patient</th>
+      <th scope="col">Paid</th>
+      <th scope="col">Outstanding</th>
+      <th scope="col">Total</th>
+      <th scope="col">Invoice</th>
+
+
+
+    </tr>
+  </thead>
+  <tbody>
+        {% for data in consulation %}
+    <tr>
+      
+      <td> {{ data.prescripted_date }}</td>
+      <td> {{ data.patient.name }} </td>
+      <td> {{ data.paid }}</td>
+      <td> {{ data.outstanding }}</td>
+      <td> {{ data.total}} </td>
+      <td> <a href="{% url 'get_pdf' id=data.id %}">Invoice</a></td>
+
+
+
+
+          </td>
+
+    </tr>
+    {% endfor %}
+
+
+
+
+
+  </tbody>
+
+</table>
+  </div>
+</div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" ></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" ></script>
+</body>
+</html>

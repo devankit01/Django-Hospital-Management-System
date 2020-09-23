@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" >
+	<style type="text/css">
+		input,select{
+			width: 300px!important;
+			border-radius: 0px!important;
+		}
+		form{
+			margin: 50px auto;
+			width: 300px;
+			height: 450px;
+			text-align: center;
+		}
+		select{
+			height:30px;
+		}
+		button{
+			width: 140px;
+			border-radius: 0px!important;
+			margin-top: 20px;
+		}
+	</style>
+</head>
+<body>
+  {% include "nav.html" %}
+
+<!-- Form -->
+<div class="container">
+<div class="row">
+<form action="{% url 'create_appointment' user=user %}" method="POST">
+	{% csrf_token %}
+ 	<input type="text" name="date" placeholder="Date" required="" class="form-control"><br>
+ 	<input type="text" name="time" placeholder="time" required="" class="form-control"><br>
+ 	 <div class="form-group">
+  	<p align="left">Patient Name</p>
+ <select name="patient" >
+ 	{% for data in patient_names %}
+	   <option  value="{{ data.pk }}">{{ data.name }} </option>
+	     {% endfor %}
+	    </select><br>
+  </div>
+   <p align="left">Docter Name</p>
+ <select name="docter" >
+ 	{% for data in docter_names %}
+	   <option  value="{{ data.pk }}">{{ data.name }} </option>
+	     {% endfor %}
+	    </select><br>
+  <div class="form-group">
+  	<p align="left">Status</p>
+ <select name="status" >
+	         <!-- <option default="">Select Gender</option> -->
+	         <option  value="0">Pending </option>
+	         <option  value="1">Completed</option>
+	         </select><br>
+	         <button type="submit" class="form-control btn-primary">Submit</button>
+  </div>
+  </div>
+  </div>
+
+
+
+
+
+
+  
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+</div>
+
+
+
+
+
+<!--JS Library -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" ></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" ></script>
+</body>
+</html>

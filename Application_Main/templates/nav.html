@@ -1,0 +1,85 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-warning">
+  <a class="navbar-brand text-dark" href="#">DocApp</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav ml-auto">
+      {% if user == None %}
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      {% else %}
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'dashboard' user=user %}">Home <span class="sr-only">(current)</span></a>
+      </li>
+     {% endif %}
+      <li class="nav-item active">
+        <a class="nav-link" href="/about">About <span class="sr-only">(current)</span></a>
+      </li>
+       <li class="nav-item active">
+        <a class="nav-link" href="/contact">Contact <span class="sr-only">(current)</span></a>
+      </li>
+      {% if not status %}
+       <li class="nav-item active">
+        <a class="nav-link" href="/register">Register <span class="sr-only">(current)</span></a>
+      </li>
+       <li class="nav-item active">
+        <a class="nav-link" href="/login">Login <span class="sr-only">(current)</span></a>
+      </li>
+      {% endif %}
+      {% if status and user == "P" %}
+<li class="nav-item active">
+        <a class="nav-link" href="{% url 'myappointment' %}">Your Appointments <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'patient_invoice' %}">Invoice & Payments <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'profile' user=user %}">Profile <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'medical_history'  %}">Medical History <span class="sr-only">(current)</span></a>
+      </li>
+       <li class="nav-item active">
+        <a class="nav-link" href="/logout">Logout <span class="sr-only">(current)</span></a>
+      </li>
+      {% endif %}
+            {% if status and user == "D" %}
+<li class="nav-item active">
+        <a class="nav-link" href="{% url 'docter_appointment'  %}"> Appointments <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'docter_prescription'  %}">Prescriptions <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'profile' user=user %}">Profile <span class="sr-only">(current)</span></a>
+      </li>
+     <li class="nav-item active">
+        <a class="nav-link" href="/logout">Logout <span class="sr-only">(current)</span></a>
+      </li>
+      {% endif %}
+            {% if status and user == "R" %}
+<li class="nav-item active">
+        <a class="nav-link" href="{% url 'receptionist_dashboard' user=user %}"> Dashboard <span class="sr-only">(current)</span></a>
+      </li>
+    
+     <li class="nav-item active">
+        <a class="nav-link" href="/logout">Logout <span class="sr-only">(current)</span></a>
+      </li>
+      {% endif %}
+                  {% if status and user == "H" %}
+<li class="nav-item active">
+        <a class="nav-link" href="{% url 'hr_dashboard' %}"> Dashboard <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'hr_accounting'  %}"> Accounting <span class="sr-only">(current)</span></a>
+      </li>
+    
+     <li class="nav-item active">
+        <a class="nav-link" href="/logout">Logout <span class="sr-only">(current)</span></a>
+      </li>
+      {% endif %}
+    </ul>
+  </div>
+</nav>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Invoice</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" >
+
+	<style type="text/css">
+		body {
+    background: grey;
+    margin-top: 120px;
+    margin-bottom: 120px;
+}
+
+	</style>
+</head>
+<body>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body p-0">
+                    <div class="row p-5">
+                        
+
+                        <div class="col-md-12 text-center">
+                            <h2 class="font-weight-bold mt-5 text-center">Invoice </h2>
+
+                        </div>
+                    </div>
+
+                    <hr class="my-1">
+
+                    <div class="row pb-5 p-5">
+                        <div class="col-md-6">
+                            <p class="font-weight-bold mb-4">Patient Information</p>
+                            <p class="mb-1">{{ data.patient.name}}</p>
+                            <p>{{ data.patient.phone }}</p>
+                            <p class="mb-1">{{ data.patient.address }}</p>
+                            <p class="mb-1">{{ data.patient.email }}</p>
+                        </div>
+
+                    </div>
+
+                    <div class="row p-5">
+                        <div class="col-md-12">
+                            <table class="table">
+                                <thead>
+
+                                    <tr>
+                                        <th class="border-0 text-uppercase small font-weight-bold">Date</th>
+                                        <th class="border-0 text-uppercase small font-weight-bold">Paid</th>
+                                        <th class="border-0 text-uppercase small font-weight-bold">Outstanding</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                	
+                                    <tr>
+                                        <td>{{ data.prescripted_date }}</td>
+                                        <td>{{ data.paid }}</td>
+                                        <td>{{ data.outstanding }}</td>
+                                 
+                                    </tr>
+                  
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+
+</div>
+
+
+<!--JS Library -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" ></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" ></script>
+</body>
+</html>

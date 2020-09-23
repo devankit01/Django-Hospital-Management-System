@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dashboard</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" >
+	<style type="text/css">
+		.card-body{
+			text-align: center;
+		}
+		.card{
+			height: 200px;
+		}
+		#hello{
+			width: 100%;
+		}
+
+  
+	</style>
+	</head>
+<body>
+ {% include "nav.html" %}
+
+
+
+
+ <div class="card-group">
+  <div class="card">
+  
+    <div class="card-body bg-light">
+      <h5 class="card-title">Total Appointments</h5>
+      <h5>{{ Total }}</h5>
+      
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body bg-success">
+      <h5 class="card-title"> Appointments Done</h5>
+      <h5>{{ Done }}</h5>
+
+    	
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body bg-primary">
+      <h5 class="card-title">Upcoming Appointments</h5>
+      <h5>{{ Pending }}</h5>
+
+      
+    </div>
+  </div>
+</div>
+<br>
+
+<div class="container">
+<div class="row">
+	<div class="col-sm">
+		<a href="{% url 'create_appointment' user=user %}" class="btn btn-primary" id="hello">Create Appointment</a>
+		<table class="table">
+  <thead>
+
+    <tr>
+      <th scope="col">Date</th>
+      <th scope="col">Time</th>
+      <th scope="col">Docter</th>
+      <th scope="col">Patient</th>
+      <th scope="col">Status</th>
+      <th scope="col">Action</th>
+
+    </tr>
+  </thead>
+  <tbody>
+  	  	{% for data in all_data %}
+    <tr>
+      <th scope="row">{{ data.date }}</th>
+      <td> {{ data.time }}</td>
+      <td> {{ data.docterid.name }} </td>
+      <td> {{ data.patientid.name }}</td>
+      {% if data.status %}
+      <td>Completed</td>
+      {% else %}
+      <td>Pending</td>
+      {% endif %}
+      <td> <a   class="btn btn-danger" href="{% url 'update_status' id=data.id %}">Done</td>
+
+
+    </tr>
+    {% endfor %}
+   
+  </tbody>
+</table>
+	</div>
+
+
+  <!-- Last patients -->
+  <div class="col-sm">
+    <a href="{% url 'create_patient'  %}" class="btn btn-primary" id="hello">Create Patient</a>
+    <table class="table">
+  <thead>
+
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Email</th>
+      <th scope="col">Gender</th>
+      <th scope="col">Age</th>
+
+
+
+    </tr>
+  </thead>
+  <tbody>
+        {% for data in last_patients %}
+    <tr>
+      
+      <td> {{ data.name }}</td>
+      <td> {{ data.phone }} </td>
+      <td> {{ data.email }}</td>
+      <td> {{ data.gender }}</td>
+      <td> {{ data.age }}</td>
+
+
+
+            <td scope="col"><a class="btn btn-primary" href="{% url 'update_patient' id=data.id %}" >Update</a></td>
+      <td scope="col"><a class="btn btn-danger" href="{% url 'delete_patient' id=data.id %}" >Delete</a></td>
+
+    </tr>
+    {% endfor %}
+
+
+
+
+
+  </tbody>
+
+</table>
+  </div>
+</div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" ></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" ></script>
+</body>
+</html>

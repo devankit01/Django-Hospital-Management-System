@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dashboard</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" >
+	<style type="text/css">
+		input,select{
+			width: 300px!important;
+			border-radius: 0px!important;
+		}
+		form{
+			margin: 120px auto;
+			width: 300px;
+			height: 450px;
+			text-align: center;
+		}
+		select{
+			height:30px;
+		}
+		button{
+			width: 140px;
+			border-radius: 0px!important;
+		}
+		
+	</style>
+	</head>
+<body>
+ {% include "nav.html" %}
+<form action="{% url 'create_prescription' %}" method="POST">
+	{% csrf_token %}
+	<input type="text" name="symptoms" placeholder="symptoms" class="form-control"><br><br>
+	<input type="text" name="prescription" placeholder="prescription" class="form-control"><br><br>
+	<select name="appointment">
+		{% for i in data %}
+		<option value={{i.id}}>{{ i.patientid.name }}</option>
+		{% endfor %}
+	</select><br><br>
+<input type="submit" name="Submit" value="Submit" class="btn btn-primary" / >
+</form>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" ></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" ></script>
+</body>
+</html>

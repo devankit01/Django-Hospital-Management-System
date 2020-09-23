@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Update Docter</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" >
+</table>
+	</div>
+
+ {% include "nav.html" %}
+
+
+  <!-- Last patients -->
+  <div class="col-sm-7">
+   
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Invoice</th>
+      <th scope="col">Paid</th>
+      <th scope="col">Date</th>
+      <th scope="col">Outstanding</th>
+    </tr>
+  </thead>
+  <tbody>
+        {% for data in data %}
+    <tr>
+      <td> <a href="{% url 'get_pdf' id=data.id %}">Invoice</a></td>
+      <td> {{ data.paid }} </td>
+      <td> {{ data.prescripted_date }}</td>
+      <td> {{ data.outstanding }}</td>
+
+          </td>
+
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+</body>
+</html>
