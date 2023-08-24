@@ -1,6 +1,6 @@
 # Django Hospital Management System
 
-![Hospital Management System](/path/to/screenshot.png)
+
 
 Welcome to the Django Hospital Management System repository! This project is built using HTML, CSS, JavaScript, and the Python Django framework.
 
